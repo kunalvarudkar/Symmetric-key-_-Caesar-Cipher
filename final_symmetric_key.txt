@@ -1,0 +1,46 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#define shared_key 4522321 
+
+void encrypt(char arr[])
+{
+	int i,j;
+	for(i=0;i<strlen(arr);i++)
+	{
+		for(j=0;j<shared_key;j++)
+		{
+			arr[i]--;
+			if(arr[i] < 32 )
+				arr[i] = 126;
+		}
+			
+	}
+}
+void decrypt(char arr[])
+{
+	int i,j;
+	for(i=0;i<strlen(arr);i++)
+	{
+		for(j=0;j<shared_key;j++)
+		{
+			arr[i]++;
+			if(arr[i]>126)
+				arr[i] = 32;
+		 }
+	}
+}
+
+int main()
+{
+	char msg[100];
+	printf("Enter your message:");
+	scanf ("%[^\n]s",msg);
+        printf("Encrypted Version\n");
+		encrypt(msg);
+		printf("%s",msg);
+		printf("\nDecrypt Version\n");
+		decrypt(msg);
+		printf("%s",msg);
+	return 0;
+}
